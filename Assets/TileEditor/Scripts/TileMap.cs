@@ -11,6 +11,7 @@ public class TileMap : MonoBehaviour
 
 	public const int maxColumns = 10000;
 
+	public bool mode2D = true;
 	public float tileSize = 1;
 	public Transform tilePrefab;
 	public TileSet tileSet;
