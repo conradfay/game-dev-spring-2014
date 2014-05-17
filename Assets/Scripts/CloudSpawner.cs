@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class CloudSpawner : MonoBehaviour {
-
     public Cloud cloudPrefab;
     public float density = 1.0f;
     public float lowerDistanceBound = 1.0f;
