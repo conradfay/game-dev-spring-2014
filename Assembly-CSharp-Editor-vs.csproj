@@ -47,9 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\TileEditor\Scripts\Editor\TileMapEditor.cs" />
- <Reference Include="Assembly-UnityScript">
- <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>

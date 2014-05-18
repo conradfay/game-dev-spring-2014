@@ -47,15 +47,18 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Buoyancy.cs" />
+     <Compile Include="Assets\Scripts\CameraFollow2D.cs" />
      <Compile Include="Assets\Scripts\Cloud.cs" />
      <Compile Include="Assets\Scripts\CloudSpawner.cs" />
+     <Compile Include="Assets\Scripts\DeathScreen.cs" />
+     <Compile Include="Assets\Scripts\FallZone.cs" />
      <Compile Include="Assets\Scripts\Lava.cs" />
-     <Compile Include="Assets\Scripts\MovingPlatform.cs" />
      <Compile Include="Assets\Scripts\Physics2DExtensions.cs" />
+     <Compile Include="Assets\Scripts\Platform.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\ScreenBounds.cs" />
      <Compile Include="Assets\Scripts\SpeedBoost.cs" />
-     <Compile Include="Assets\TileEditor\Demo\Scripts\Player.cs" />
      <Compile Include="Assets\TileEditor\Scripts\PathTile.cs" />
      <Compile Include="Assets\TileEditor\Scripts\TileMap.cs" />
      <Compile Include="Assets\TileEditor\Scripts\TileSet.cs" />

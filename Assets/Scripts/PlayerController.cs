@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
+
 public class PlayerController : MonoBehaviour {
 
 	public float speed = 100.0f;
@@ -8,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	public float minJumpFrequency = 5.0f;
 	private float lastJump = 0;
     private bool grounded;
+    private bool inCollision;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +22,12 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        grounded = isGrounded();
+        // Handle jumping.
+        if (Input.GetButton("Jump"))
+        {
+            jump();
+        }
+        grounded = Physics2D.OverlapCircle(transform.position, GetComponent<CircleCollider2D>().radius);
 	}
 
     void FixedUpdate()
@@ -29,12 +38,19 @@ public class PlayerController : MonoBehaviour {
 		rigidbody2D.AddForce(movementVector * speed);
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+
+    }
+
     void OnCollisionStay2D(Collision2D collision)
     {
-		// Handle jumping.
-		if (Input.GetButton("Jump")) {
-			jump();
-		}
+        
     }
 
 	private void jump() {
@@ -42,10 +58,10 @@ public class PlayerController : MonoBehaviour {
         if (Time.time - lastJump > 1 / minJumpFrequency) {
             // Jump only if player is on the ground.
             if (grounded) {
-                //Debug.Log("jumping");
                 //Debug.Log("" + (Time.time - lastJump) + " : " + (1 / minJumpFrequency));
 				lastJump = Time.time;
 				rigidbody2D.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);
+                //rigidbody2D.velocity = new Vector2(0, jumpForce);
 			}
 		}
 	}
@@ -55,9 +71,9 @@ public class PlayerController : MonoBehaviour {
 		// Distance from the center of the player to the bottom of the player.
 		float distToFeet = GetComponent<CircleCollider2D>().radius * transform.localScale.y;
 		// Vector from the center of the player to the right-hand side of the player.
-		Vector3 vectorToRight = new Vector3(distToFeet, 0, 0);
+        Vector3 vectorToRight = new Vector3(distToFeet, 0, 0);
 		const float raycastLength = 0.05f;
-		Debug.DrawRay(transform.position, -Vector2.up * distToFeet, Color.yellow);
+		Debug.DrawRay(transform.position, -Vector2.up * (distToFeet + raycastLength), Color.yellow);
 		Debug.DrawRay(transform.position + vectorToRight, -Vector2.up * distToFeet, Color.yellow, 0.1f);
 		Debug.DrawRay(transform.position - vectorToRight, -Vector2.up * distToFeet, Color.yellow, 0.1f);
 		// Check if any of three rays makes contact with an object:
