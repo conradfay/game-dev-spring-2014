@@ -4,6 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     public DeathScreen deathScreen;
+    public ParticleSystem deathExplosion;
     private Vector2 spawnPosition;
 
 	// Use this for initialization
@@ -16,6 +17,14 @@ public class Player : MonoBehaviour {
 	
 	}
 
+    public void die()
+    {
+        // TODO Don't instantly respawn!
+        GameObject.Instantiate(deathExplosion, transform.position, transform.rotation);
+        respawn();
+        //GameObject.Instantiate(deathScreen);
+    }
+
     public void fall()
     {
         Camera.main.GetComponent<CameraFollow2D>().target = null;
@@ -24,6 +33,7 @@ public class Player : MonoBehaviour {
 
     public void respawn()
     {
+        gameObject.SetActive(true);
         transform.position = spawnPosition;
         Camera.main.GetComponent<CameraFollow2D>().target = gameObject.transform;
     }

@@ -7,9 +7,8 @@ public class Lava : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.gameObject.tag == "Player") {
-			GameObject player = collider.gameObject;
-			GameObject.Instantiate(playerExplosion, player.transform.position, player.transform.rotation);
-			Destroy(player);
+			Player player = collider.gameObject.GetComponent<Player>();
+            player.die();
 		}
 	}
 }
